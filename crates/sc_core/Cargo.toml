@@ -1,0 +1,11 @@
+# /shyen_capital/crates/sc_core/Cargo.toml
+
+[package]
+name = "sc_core"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Serde is the standard for efficient and safe serialization/deserialization in Rust.
+# We'll use it to parse data from APIs into our structs.
+serde = { version = "1.0", features = ["derive"] } 

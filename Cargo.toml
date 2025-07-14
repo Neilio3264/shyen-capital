@@ -1,0 +1,19 @@
+# /shyen_capital/Cargo.toml
+
+[workspace]
+# This section defines all the crates that are part of our Shyen Capital project.
+# Each crate is a modular component of our micro-architecture.
+members = [
+    "crates/sc_core",
+    "crates/sc_data_ingestors",
+    "crates/sc_nlp",
+    "crates/sc_trading_engine",
+    "crates/sc_backtester",
+]
+
+# We can define shared dependency profiles here to ensure consistency.
+# For example, we'll optimize for performance in our release builds.
+[profile.release]
+lto = true          # Link-Time Optimization for maximum performance
+codegen-units = 1   # Slower compile time, but better optimization
+panic = 'abort'     # Smaller binary size and slightly faster on panic
