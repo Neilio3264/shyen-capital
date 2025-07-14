@@ -1,0 +1,37 @@
+# /shyen_capoital/crates/sc_data_ingestors/Cargo.toml
+
+[package]
+name = "sc_data_ingestors"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# We depend on our core crate for the shared data structures.
+sc_core = { path = "../sc_core" }
+
+# Tokio is our asynchronous runtime, enabling high-performance concurrent operations.
+tokio = { version = "1", features = ["full"] }
+
+# Reqwest is a powerful HTTP client for interacting with REST APIs (e.g., news, historical data)
+reqwest = { version = "0.12", features = ["json"] }
+
+# Tokio-Tungstenite is the standard for high-performance async WebSockets in Rust.
+# This is crucial for our real-time market data feed.
+tokio-tungstenite = { version = "0.23", features = ["native-tls"] }
+
+# Serde is used for serializing and deserializing data (e.g., JSON from APIs)
+serde = { version = "1.0", features = ["derive"] }
+serde-json = "1.0"
+
+# Futures is a core library for working with async operations in Rust.
+futures = "0.3"
+
+# --- API Specific Wrappers ---
+# Scraper is a library for parsing and querying HTML documents, essential for our web scraper.
+scraper = "0.19.0"
+
+# Roux is a well-maintained wrapper for the Reddit API
+roux = { version = "2.2", features = ["blocking"] }
+
+# Twapi-v2 is a comprehensive wrapper for the X (Twitter) v2 API
+twapi-v2 = "0.20"
