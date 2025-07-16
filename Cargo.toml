@@ -9,6 +9,7 @@ members = [
     "crates/sc_nlp",
     "crates/sc_trading_engine",
     "crates/sc_backtester",
+    "shyen_capital_app"
 ]
 
 # We can define shared dependency profiles here to ensure consistency.

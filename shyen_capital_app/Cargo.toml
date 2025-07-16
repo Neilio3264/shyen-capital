@@ -1,0 +1,18 @@
+# /shyen_capital/shyen_capital_app/Cargo.toml
+
+[package]
+name = "shyen_capital_app"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# We depend on our library crates
+sc_core = { path = "../crates/sc_core" }
+sc_data_ingestors = { path = "../crates/sc_data_ingestors" }
+sc_nlp = { path = "../crates/sc_nlp" }
+
+# Tokio is our main async runtime.
+tokio = { version = "1", features = ["full"] }
+
+# Dotenv is used to load the environment variables from our.env file.
+dotenvy = "0.15"
