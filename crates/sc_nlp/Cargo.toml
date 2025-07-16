@@ -1,0 +1,22 @@
+# /shyen_capital/crates/sc_nlp/Cargo.toml
+
+[package]
+name = "sc_nlp"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# We depend on our core crate for the shared data structures.
+sc_core = { path = "../sc_core" }
+
+# The fundamental crate for N-dimensional array manipulation in Rust.
+# This will be the foundation for all our matrix and vector math.
+ndarray = "0.15"
+
+# The official, high-performance tokenizer library from Hugging Face, written in Rust.
+# This allows us to use pre-trained tokenizer vocabularies from models like FinBERT.
+tokenizers = "0.19"
+
+# Serde is used for potential model configuration loading.
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
