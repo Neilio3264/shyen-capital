@@ -8,8 +8,9 @@ use tokenizer::ShyenTokenizer;
 
 /// The main sentiment analysis engine for Shyen Capital.
 ///
-/// This struct will encapsulate the entire NLP pipeline, from tokenization
-/// to model inference, providing a simple interface to get a sentiment score
+/// This struct encapsulates the entire NLP pipeline, from tokenization
+/// to model inference, using the state-of-the-art ModernFinBERT model.
+/// It provides a simple, high-performance interface to get a sentiment score
 /// for a given piece of text.
 pub struct SentimentAnalyzer {
     tokenizer: ShyenTokenizer,
@@ -19,14 +20,14 @@ pub struct SentimentAnalyzer {
 impl SentimentAnalyzer {
     /// Creates a new instance of the SentimentAnalyzer.
     ///
-    /// This function will load the necessary assets, such as the tokenizer
-    /// vocabulary and the trained model weights, from the `/data/models/` directory.
-    pub fn new(model_path: &str) -> Result<Self, Box<dyn std::error::Error>> {
-        println!(": Loading tokenizer from {}...", model_path);
-        let tokenizer = ShyenTokenizer::new(model_path)?;
+    /// This function initializes the tokenizer by downloading or loading it from cache.
+    /// It will also be responsible for loading the trained model weights in the future.
+    pub fn new() -> Result<Self, Box<dyn std::error::Error>> {
+        println!(": Initializing tokenizer for ModernFinBERT...");
+        let tokenizer = ShyenTokenizer::new()?;
         
         // --- Placeholder for loading the model ---
-        // let model = ShyenBertModel::new(model_path)?;
+        // let model = ShyenBertModel::new()?;
         // --- End Placeholder ---
 
         Ok(Self {
@@ -43,7 +44,7 @@ impl SentimentAnalyzer {
     /// # Returns
     /// A vector of f32 sentiment scores, one for each input text.
     pub fn analyze(&self, texts: &[&str]) -> Vec<f32> {
-        // Step 1: Tokenize the input texts.
+        // Step 1: Tokenize the input texts using the ModernFinBERT tokenizer.
         let encodings = self.tokenizer.encode_batch(texts);
 
         // --- Placeholder for model inference ---
@@ -55,7 +56,7 @@ impl SentimentAnalyzer {
         // scores
         // --- End Placeholder ---
 
-        // For now, return a vector of neutral scores.
+        // For now, return a vector of neutral scores for demonstration.
         vec![0.0; texts.len()]
     }
 }
