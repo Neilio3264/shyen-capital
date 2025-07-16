@@ -21,15 +21,17 @@ pub async fn stream_reddit_data(tx: Sender<DataPacket>) -> Result<(), Box<dyn st
     // --- Reddit API Authentication ---
     // It is best practice to load credentials from environment variables.
     // This avoids hardcoding sensitive information into the source code.
-    let client_id = env::var("REDDIT_CLIENT_ID").expect("REDDIT_CLIENT_ID not set");
-    let client_secret = env::var("REDDIT_CLIENT_SECRET").expect("REDDIT_CLIENT_SECRET not set");
-    let username = env::var("REDDIT_USERNAME").expect("REDDIT_USERNAME not set");
-    let password = env::var("REDDIT_PASSWORD").expect("REDDIT_PASSWORD not set");
+    // The `.expect()` method will cause the program to panic if the variable is not set,
+    // which is appropriate here as the module cannot function without credentials.
+    let client_id = env::var("REDDIT_CLIENT_ID").expect("REDDIT_CLIENT_ID not set in environment");
+    let client_secret = env::var("REDDIT_CLIENT_SECRET").expect("REDDIT_CLIENT_SECRET not set in environment");
+    let username = env::var("REDDIT_USERNAME").expect("REDDIT_USERNAME not set in environment");
+    let password = env::var("REDDIT_PASSWORD").expect("REDDIT_PASSWORD not set in environment");
 
     println!(": Authenticating with Reddit API...");
     
     // Create a new Reddit client and log in.
-    let client = Reddit::new("shyen_capital_v0.1 by /u/your_reddit_username", &client_id, &client_secret)
+    let client = Reddit::new("shyen_capital_v0.1 by /u/neilio3264", &client_id, &client_secret)
        .username(&username)
        .password(&password)
        .login()
