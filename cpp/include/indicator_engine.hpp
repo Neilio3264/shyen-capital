@@ -3,15 +3,6 @@
 #include <vector>
 #include <unordered_map>
 
-/// A struct to hold all computed indicator series
-struct Indicators {
-    std::vector<double> ema20;
-    std::vector<double> ema50;
-    std::vector<double> ema200;
-    std::vector<double> rsi14;
-    // (you can add more here: VWAP, ATR, etc.)
-};
-
 /// Compute the exponential moving average over `src` with look-back `period`.
 /// Returns a vector the same length as `src`; 
 /// for indices < period-1, the EMA is set to NaN.
