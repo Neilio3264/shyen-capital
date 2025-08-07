@@ -4,6 +4,12 @@
 
 enum class Trend { Up, Down, Flat };
 
+/// A quick “dirty” verdict in ~2 s using only the last bar
+Trend predictDirty(const Indicators& ind);
+
+/// A “full” 15 min verdict using the last K bars’ worth of features
+Trend predictFull(const std::vector<Indicators>& history);
+
 class TrendPredictor {
 public:
   TrendPredictor(double fullAcc, double dirtyAcc);

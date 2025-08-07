@@ -30,19 +30,23 @@ int main(int argc, char* argv[]) {
     }
     std::cout << "Loaded " << md->bars().size() << " bars\n";
 
+    vector<Indicators> indHistory;
     IndicatorEngine ie;
     TrendPredictor tp(0.95, 0.75);
+    Trend currentDirty, currentFull;
     OptionsSelector os;
 
     md->startRealtime();
     while (true) {
-    auto bars = md->bars();
-    ie.compute(bars);
-    auto ind = ie.latest();
-    auto trend = tp.predictDirty(ind);
-    // every 15m: tp.predictFull(ind);
-    auto signals = os.scan(trend);
-    // dispatch alerts…
+        auto bars = md->bars();
+        ie.compute(bars);
+        indHistory.push_back(ie.latest());
+
+        // every new bar:
+        currentDirty = predictDirty(indHistory.back());
+
+        // every 15 min (or count bars %15 ==0):
+        currentFull = predictFull(indHistory);
     }
 
     return 0;
