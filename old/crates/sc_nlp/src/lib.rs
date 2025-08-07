@@ -2,7 +2,7 @@
 
 // Declare the sub-modules that will contain our NLP components.
 pub mod tokenizer;
-// pub mod model; // We will add this in a later step.
+pub mod model;
 
 use tokenizer::ShyenTokenizer;
 
