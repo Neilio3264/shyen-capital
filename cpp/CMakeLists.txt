@@ -17,3 +17,5 @@ add_executable(shyen_bot src/main.cpp)
 target_link_libraries(shyen_bot PRIVATE shyen_core)
 
 # Tests
+add_executable(test_indicator tests/test_indicator_engine.cpp src/indicator_engine.cpp)
+target_link_libraries(test_indicator PRIVATE shyen_core)
